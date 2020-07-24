@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuGenerator", "MenuGenerator.csproj", "{1702D2A8-40EF-4265-A98C-D1EF5080101B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MenuGenerator", "MenuGenerator.csproj", "{1702D2A8-40EF-4265-A98C-D1EF5080101B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "menu_demo", "..\menu_demo\menu_demo.csproj", "{03C33F9F-48A7-4F69-8CF8-D3979148CC55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "menu_demo", "menu_demo.csproj", "{157A08A4-5E69-46BE-A6AD-6B7D7036CCCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{1702D2A8-40EF-4265-A98C-D1EF5080101B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1702D2A8-40EF-4265-A98C-D1EF5080101B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1702D2A8-40EF-4265-A98C-D1EF5080101B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{03C33F9F-48A7-4F69-8CF8-D3979148CC55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03C33F9F-48A7-4F69-8CF8-D3979148CC55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03C33F9F-48A7-4F69-8CF8-D3979148CC55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03C33F9F-48A7-4F69-8CF8-D3979148CC55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{157A08A4-5E69-46BE-A6AD-6B7D7036CCCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{157A08A4-5E69-46BE-A6AD-6B7D7036CCCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{157A08A4-5E69-46BE-A6AD-6B7D7036CCCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{157A08A4-5E69-46BE-A6AD-6B7D7036CCCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
