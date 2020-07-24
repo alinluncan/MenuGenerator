@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace MenuGenerator
 {
@@ -25,34 +26,39 @@ namespace MenuGenerator
             {
                 Console.WriteLine($"{option.Id} - {option.Value}.");
             }
-    
-            if(_selectionType == SelectionType.MultipleSelectionAllowNoSelection || _selectionType == SelectionType.MultipleSelectionAllowNoSelection)
+
+            if (_selectionType == SelectionType.MultipleSelectionAllowNoSelection || _selectionType == SelectionType.MultipleSelectionAllowNoSelection)
                 Console.WriteLine("Enter N - No selection");
 
             //TODO: Wait for user input
-            if (_selectionType == SelectionType.SingleSelection)
-                Console.WriteLine("Enter Id of selection:");
-            else
-                Console.WriteLine("Enter Ids of selection (eg. \"1,4,6\":");
+            Console.WriteLine(_selectionType == SelectionType.SingleSelection
+                ? "Enter Id of selection:"
+                : "Enter Ids of selection (eg. \"1,4,6\":");
 
             var selectedIds = GetUserInput();
-            while(selectedIds == null)
+        notValid:
+            while (selectedIds == null)
             {
+                Console.WriteLine(_selectionType == SelectionType.SingleSelection
+                    ? "Please introduce a valid selection: "
+                    : "Please introduce valid selections (eg. \"1,4,6\":");
                 selectedIds = GetUserInput();
             }
 
             foreach (var selectedId in selectedIds)
             {
-                if(!int.TryParse(selectedId,out var id))
+                if (!int.TryParse(selectedId, out var id))
                     continue;
 
                 var selectedOption = _options.FirstOrDefault(option => option.Id == id);
-                if(selectedOption == null)
-                    continue;
-
+                if (selectedOption == null)
+                {
+                    selectedIds = null;
+                    selectionList.Clear();
+                    goto notValid; //case in which the options entered were not available(i.e: selected 5 but 5 didn't exist) so need to reselect
+                }
                 selectionList.Add(selectedOption);
             }
-
             return selectionList;
         }
 
@@ -61,15 +67,12 @@ namespace MenuGenerator
             var inputFromUser = Console.ReadLine();
             if (string.IsNullOrEmpty(inputFromUser))
                 return null;
-            
-            if((_selectionType == SelectionType.MultipleSelectionAllowNoSelection || _selectionType == SelectionType.MultipleSelectionAllowNoSelection) &&
+            if ((_selectionType == SelectionType.MultipleSelectionAllowNoSelection || _selectionType == SelectionType.MultipleSelectionAllowNoSelection) &&
                (inputFromUser.Equals("n", StringComparison.CurrentCultureIgnoreCase)))
                 return new List<string>();
-
-            if (_selectionType == SelectionType.SingleSelection)
+            if (_selectionType == SelectionType.SingleSelection && Regex.IsMatch(inputFromUser, "[1-9]\\d*"))
                 return new List<string> { inputFromUser };
-
-            return inputFromUser.Contains(',') ? inputFromUser.Split(',') : null;
+            return (_selectionType == SelectionType.MultipleSelection && Regex.IsMatch(inputFromUser, "([1-9]\\d*[,]?)+")) ? inputFromUser.Split(',') : null;
         }
     }
 }
